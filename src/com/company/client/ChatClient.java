@@ -11,15 +11,20 @@ public class ChatClient {
         client.start();
 
         Scanner scanner = new Scanner(System.in);
-        String message = null;
+
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        String message;
 
         while (true) {
-            System.out.print("Enter Message (Client): ");
+            System.out.print("[" + name + "]: ");
             message = scanner.nextLine();
-            if (message ==   "exit") {
+            client.sendMessage(message, name);
+            if (message.equals("exit")) {
+                System.out.println("Exiting application..");
                 break;
             }
-            client.sendMessage(message);
+
         }
 
         System.out.println("Client finished execution");

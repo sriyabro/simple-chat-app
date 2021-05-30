@@ -8,12 +8,12 @@ public class ChatClient2 {
         
         Client client = new Client();
         client.start();
-        
-        client.sendMessage("Hello from Client!!");
-        client.sendMessage("How are you?");
-        client.sendMessage("I am fine");
-        client.sendMessage("Thank you");
-        client.sendMessage("exit");
+
+        //client.sendMessage("Hello from Client!!");
+        //client.sendMessage("How are you?");
+        //client.sendMessage("I am fine");
+        //client.sendMessage("Thank you");
+        //client.sendMessage("exit");
 
         System.out.println("Client finished execution");
 

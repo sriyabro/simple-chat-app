@@ -24,24 +24,28 @@ public class ClientHandler implements Runnable{
             DataOutputStream outputStream = new DataOutputStream(this.client.getOutputStream());
 
             Scanner scanner = new Scanner(System.in);
-            String message;
+            String serverMessage;
 
             //Continuous reading data from client
             String inputData;
+            String name;
             while ((inputData = bufferedReader.readLine()) != null) {
 
-                System.out.println("Client says: " + inputData);
+                name = bufferedReader.readLine();
+                System.out.println("[" + name + "]: " + inputData);
 
                 if (inputData.equals("exit")) {
+                    System.out.println("Exiting...");
                     break;
                 }
                 else { //send data to client
-                    System.out.print("Enter Message (Server):");
-                    message = scanner.nextLine();
-                    outputStream.writeBytes(message + "\n");
+                    System.out.print("[Server]: ");
+                    serverMessage = scanner.nextLine();
+                    outputStream.writeBytes(serverMessage + "\n");
                 }
             }
             this.client.close();
+            System.out.println("Client closed");
 
         } catch (IOException e) {
             e.printStackTrace();
