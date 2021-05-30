@@ -2,6 +2,7 @@ package com.company.server;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ClientHandler implements Runnable{
 
@@ -22,32 +23,22 @@ public class ClientHandler implements Runnable{
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             DataOutputStream outputStream = new DataOutputStream(this.client.getOutputStream());
 
+            Scanner scanner = new Scanner(System.in);
+            String message;
+
             //Continuous reading data from client
             String inputData;
             while ((inputData = bufferedReader.readLine()) != null) {
 
                 System.out.println("Client says: " + inputData);
-                //send data to client
-                switch (inputData) {
-                    case "Hello from Client!!":
-                        outputStream.writeBytes("Hello from Server..\n");
-                        break;
-                    case "How are you?":
-                        outputStream.writeBytes("I am fine. How are you? \n");
-                        break;
-                    case "I am fine":
-                        outputStream.writeBytes("Okay! good to know \n");
-                        break;
-                    case "Thank you":
-                        outputStream.writeBytes("You are welcome \n");
-                        break;
-                    default:
-                        outputStream.writeBytes("Sorry I can't understand \n");
-
-                }
 
                 if (inputData.equals("exit")) {
                     break;
+                }
+                else { //send data to client
+                    System.out.print("Enter Message (Server):");
+                    message = scanner.nextLine();
+                    outputStream.writeBytes(message + "\n");
                 }
             }
             this.client.close();

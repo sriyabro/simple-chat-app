@@ -1,6 +1,7 @@
 package com.company.client;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ChatClient {
 
@@ -9,12 +10,17 @@ public class ChatClient {
         Client client = new Client();
         client.start();
 
-        
-        client.sendMessage("Hello from Client!!");
-        client.sendMessage("How are you?");
-        client.sendMessage("I am fine");
-        client.sendMessage("Thank you");
-        client.sendMessage("exit");
+        Scanner scanner = new Scanner(System.in);
+        String message = null;
+
+        while (true) {
+            System.out.print("Enter Message (Client): ");
+            message = scanner.nextLine();
+            if (message ==   "exit") {
+                break;
+            }
+            client.sendMessage(message);
+        }
 
         System.out.println("Client finished execution");
 

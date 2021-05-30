@@ -8,7 +8,6 @@ public class ChatClient2 {
         
         Client client = new Client();
         client.start();
-
         
         client.sendMessage("Hello from Client!!");
         client.sendMessage("How are you?");
